@@ -1,18 +1,15 @@
 from fastapi import FastAPI, Request
 
 from .database import DB
-from .settings import ENV
+from .settings import ENV, TEMPLATES
 
 
 app = FastAPI()
 
 
 @app.get("/")
-async def homepage():
-    r = DB["collection"].insert_one({"test": "beans"})
-    print(f">>>> {r.inserted_id}")
-
-    return ENV.MAIN_DATABASE
+async def homepage(request: Request):
+    return TEMPLATES.TemplateResponse("pages/index.html", {"request": request})
 
 
 @app.get("/db/{collection}")

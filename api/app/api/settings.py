@@ -1,4 +1,6 @@
+from fastapi.templating import Jinja2Templates
 from pydantic import BaseSettings
+import os
 
 
 class Environment(BaseSettings):
@@ -14,3 +16,9 @@ class Environment(BaseSettings):
 
 
 ENV = Environment()
+
+
+APP_DIR = "app"
+TEMPLATES_DIR = os.path.join(APP_DIR, "templates")
+
+TEMPLATES = Jinja2Templates(directory=TEMPLATES_DIR)
