@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 
 from .database import DB
+from .settings import ENV
 
 
 app = FastAPI()
@@ -8,4 +9,4 @@ app = FastAPI()
 
 @app.get("/")
 async def homepage():
-    return "Hello, world!"
+    return ENV.MAIN_DATABASE
