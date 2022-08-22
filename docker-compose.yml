@@ -1,4 +1,4 @@
-version: '3'
+version: "3.10"
 services:
   mongo:
     image: mongo:latest
@@ -10,9 +10,9 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
       MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
     volumes:
-      - mongo:/data/db
+      - mongodb_data_container:/data/db
     ports:
-      - '6000:27017'
+      - "27017:27017"
 
 volumes:
   mongo:
