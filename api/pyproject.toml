@@ -11,6 +11,7 @@ pymongo = "^4.2.0"
 python = "^3.8"
 python-multipart = "^0.0.5"
 uvicorn = "^0.18.2"
+python-dotenv = "^0.20.0"
 
 [tool.poetry.dev-dependencies]
 black = "^22.6.0"

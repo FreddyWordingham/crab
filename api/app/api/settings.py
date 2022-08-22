@@ -1,14 +1,16 @@
-from fastapi.templating import Jinja2Templates
-import os
-import pymongo
+from pydantic import BaseSettings
 
 
-APP_DIR = "app"
-STATIC_DIR = os.path.join(APP_DIR, "static")
-TEMPLATES_DIR = os.path.join(APP_DIR, "templates")
+class Environment(BaseSettings):
+    DATABASE_URL: str
+    CLIENT_ORIGIN: str
+    MAIN_DATABASE: str
 
-TEMPLATES = Jinja2Templates(directory=TEMPLATES_DIR)
+    class Config:
+        env_prefix = ""
+        case_sentive = False
+        env_file = "./../.env"
+        env_file_encoding = "utf-8"
 
-CLIENT = pymongo.MongoClient(
-    "mongodb://mongodb_container:27017/", username="root", password="rootpassword"
-)
+
+ENV = Environment()
