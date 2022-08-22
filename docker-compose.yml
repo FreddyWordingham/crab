@@ -8,11 +8,18 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
-      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+      MAIN_DATABASE: ${MAIN_DATABASE}
     volumes:
       - mongodb_data_container:/data/db
     ports:
-      - "6000:27017"
+      - "27017:27017"
+  api:
+    container_name: api_container
+    env_file:
+      - ./.env
+    build: ./api
+    ports:
+      - 8000:8000
 
 volumes:
   mongodb_data_container:
