@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
+import json
 
 from .database import DB
 from .settings import ENV, TEMPLATES
@@ -23,5 +24,8 @@ async def get_all(collection: str):
 
 @app.post("/db/{collection}")
 async def add_new(request: Request, collection: str):
-    record = await request.json()
+    record: dict = await request.json()
+    record = json.loads(record)
+    print(record)
+
     return DB[collection].insert_one(record)
