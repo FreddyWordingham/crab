@@ -1,0 +1,28 @@
+<div
+    id="pass_message_box"
+    class="alert alert-success"
+    style="margin-top: 20px; display: none"
+    onclick="$(this).slideUp()"
+>
+    <span id="pass_message_text">Result: PASS</span>
+</div>
+<div
+    id="fail_message_box"
+    class="alert alert-danger"
+    style="margin-top: 20px; display: none"
+    onclick="$(this).slideUp()"
+>
+    <span id="fail_message_text">Result: FAIL</span>
+</div>
+
+<script>
+    const show_success = (message) => {
+        $("#fail_message_box").slideUp();
+        $("#pass_message_text").text(value).slideDown();
+    };
+
+    const show_error = (message) => {
+        $("#pass_message_box").slideUp();
+        $("#fail_message_box").text(value).slideDown();
+    };
+</script>
