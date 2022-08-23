@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
 import json
 
@@ -21,10 +21,15 @@ async def get_all():
 
 
 @app.post("/db")
-async def add_new():
-    # record: dict = await request.json()
-    # record = json.loads(record)
-    # print(record)
+async def add_new(request: Request):
+    record: dict = await request.json()
+    record = json.loads(record)
 
-    DB.collection.insert_one({"test": "test"})
-    return "Doine"
+    try:
+        ans = DB.collection.insert_one(record)
+    except Exception as err:
+        raise HTTPException(
+            status_code=404, detail=f'Failed to add new record: "{err}"'
+        )
+
+    return f"{ans.inserted_id}"
