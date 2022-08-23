@@ -2,7 +2,7 @@
 
 <h1 style="text-align: center">crab</h1>
 <hr />
-<button type="button" class="btn btn-warning" onclick="crud_create()">
+<button type="button" class="btn btn-warning" onclick="add_new()">
     create
 </button>
 <button type="button" class="btn btn-success" onclick="crud_read()">
@@ -25,7 +25,7 @@
 {% include "components/success_error.html" %}
 
 <script>
-    const crud_create = () => {
+    const add_new = () => {
         const data = $("#console").val();
         Client.add_new(
             data,
@@ -37,12 +37,6 @@
             }
         );
     };
-
-    const crud_read = () => {};
-
-    const crud_update = () => {};
-
-    const crud_destroy = () => {};
 </script>
 
 {% endblock %}
