@@ -3,7 +3,7 @@ from fastapi.staticfiles import StaticFiles
 import json
 
 from .database import DB
-from .settings import ENV, TEMPLATES
+from .settings import TEMPLATES
 
 
 app = FastAPI()
@@ -12,9 +12,7 @@ app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 @app.get("/")
 async def homepage(request: Request):
-    return TEMPLATES.TemplateResponse(
-        "pages/index.html", {"request": request, "MAIN_DATABASE": ENV.MAIN_DATABASE}
-    )
+    return TEMPLATES.TemplateResponse("pages/index.html", {"request": request})
 
 
 @app.get("/db")
