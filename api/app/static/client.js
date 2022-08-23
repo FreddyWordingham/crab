@@ -5,18 +5,18 @@ class Client {
     }
 
     // == CRUD ==
-    static get_all(collection, success, error) {
+    static get_all(success, error) {
         $.ajax({
-            url: "/db/" + collection,
+            url: "/db",
             type: "GET",
             success: success,
             error: error,
         });
     }
 
-    static add_new(collection, record, success, error) {
+    static add_new(record, success, error) {
         $.ajax({
-            url: "/db/" + collection,
+            url: "/db",
             type: "POST",
             dataType: "json",
             contentType: "application/json",

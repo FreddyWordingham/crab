@@ -1,28 +1,30 @@
 <div
-    id="pass_message_box"
+    id="success_message_box"
     class="alert alert-success"
-    style="margin-top: 20px; display: none"
+    style="margin-top: 20px"
     onclick="$(this).slideUp()"
 >
-    <span id="pass_message_text">Result: PASS</span>
+    <span id="success_message_text">Result: SUCCESS</span>
 </div>
 <div
-    id="fail_message_box"
+    id="error_message_box"
     class="alert alert-danger"
-    style="margin-top: 20px; display: none"
+    style="margin-top: 20px"
     onclick="$(this).slideUp()"
 >
-    <span id="fail_message_text">Result: FAIL</span>
+    <span id="error_message_text">Result: ERROR</span>
 </div>
 
 <script>
     const show_success = (message) => {
-        $("#fail_message_box").slideUp();
-        $("#pass_message_text").text(message).slideDown();
+        $("#error_message_box").slideUp();
+        $("#success_message_text").text(message);
+        $("#success_message_box").slideDown();
     };
 
     const show_error = (message) => {
-        $("#pass_message_box").slideUp();
-        $("#fail_message_box").text(message).slideDown();
+        $("#success_message_box").slideUp();
+        $("#error_message_text").text(message);
+        $("#error_message_box").slideDown();
     };
 </script>

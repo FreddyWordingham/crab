@@ -17,15 +17,16 @@ async def homepage(request: Request):
     )
 
 
-@app.get("/db/{collection}")
-async def get_all(collection: str):
-    return DB[collection].find()
+@app.get("/db")
+async def get_all():
+    return DB.collection.find()
 
 
-@app.post("/db/{collection}")
-async def add_new(request: Request, collection: str):
-    record: dict = await request.json()
-    record = json.loads(record)
-    print(record)
+@app.post("/db")
+async def add_new():
+    # record: dict = await request.json()
+    # record = json.loads(record)
+    # print(record)
 
-    return DB[collection].insert_one(record)
+    DB.collection.insert_one({"test": "test"})
+    return "Doine"
