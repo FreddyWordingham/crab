@@ -1,10 +1,12 @@
 from fastapi import FastAPI, Request
+from fastapi.staticfiles import StaticFiles
 
 from .database import DB
 from .settings import ENV, TEMPLATES
 
 
 app = FastAPI()
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 
 @app.get("/")
