@@ -2,6 +2,12 @@
 
 <h1 style="text-align: center">crab</h1>
 <hr />
+<input
+    id="collection"
+    type="text"
+    placeholder="{{ MAIN_DATABASE }}"
+    value="{{ MAIN_DATABASE }}"
+/>
 <button type="button" class="btn btn-warning" onclick="crud_create()">
     create
 </button>
@@ -24,8 +30,10 @@
 
 <script>
     const crud_create = () => {
+        const collection = $("#collection").val();
         const data = $("#console").val();
         Client.add_new(
+            collection,
             data,
             (response) => {
                 show_success(response);

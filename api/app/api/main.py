@@ -11,7 +11,9 @@ app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 @app.get("/")
 async def homepage(request: Request):
-    return TEMPLATES.TemplateResponse("pages/index.html", {"request": request})
+    return TEMPLATES.TemplateResponse(
+        "pages/index.html", {"request": request, "MAIN_DATABASE": ENV.MAIN_DATABASE}
+    )
 
 
 @app.get("/db/{collection}")
