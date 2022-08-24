@@ -24,6 +24,13 @@
             return;
         }
 
+        try {
+            JSON.parse(data);
+        } catch (error) {
+            show_error("Invalid JSON: " + error);
+            return;
+        }
+
         Client.add_new(
             data,
             (response) => {
