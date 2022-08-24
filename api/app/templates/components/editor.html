@@ -1,0 +1,51 @@
+<textarea
+    id="input"
+    autocomplete="off"
+    onkeydown="handle_keypress(event)"
+    onchange="editor.load(get_json())"
+    rows="5"
+    style="width: 100%"
+></textarea>
+<pre id="output"></pre>
+<button class="btn btn-warning" onclick="editor.load(get_json())">
+    Update
+</button>
+
+<script>
+    const insert_text_at_cursor = (text) => {
+        var cursorPos = $("#input").prop("selectionStart");
+        var v = $("#input").val();
+        var pretext = v.substring(0, cursorPos);
+        var posttext = v.substring(cursorPos, v.length);
+        $("#input").val(pretext + text + posttext);
+        var x = pretext.length + text.length;
+        $("#input").prop("selectionEnd", x);
+    };
+
+    const handle_keypress = (event) => {
+        if (event.key == "Tab") {
+            event.preventDefault();
+            insert_text_at_cursor("\t");
+        } else {
+            console.log("Unhandled keypress: " + event.key);
+        }
+
+        editor.load(get_json());
+    };
+
+    var last_valid_json = "{}";
+    const get_json = () => {
+        try {
+            var json = JSON.parse($("#input").val());
+        } catch (exception) {
+            return last_valid_json;
+        }
+        last_valid_json = json;
+        return json;
+    };
+
+    var editor = undefined;
+    $(document).ready(() => {
+        editor = new JsonEditor("#output", get_json());
+    });
+</script>

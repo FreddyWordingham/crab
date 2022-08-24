@@ -1,19 +1,16 @@
 {% extends "base.html" %} {% block content %}
 
 <h1 style="text-align: center">crab</h1>
-<hr />
-<button type="button" class="btn btn-success" onclick="add_new()">
-    create
-</button>
-<hr />
-<textarea
-    id="console"
-    class="form-control"
-    style="font-family: monospace"
-    rows="5"
-></textarea>
-</hr>
-{% include "components/success_error.html" %}
+<div class="row">
+    <div class="col-sm-5">{% include "components/editor.html" %}</div>
+    <div class="col-sm-2">
+        <button type="button" class="btn btn-success" onclick="add_new()">
+            create
+        </button>
+    </div>
+    <div class="col-sm-5"></div>
+</div>
+<div class="row">{% include "components/success_error.html" %}</div>
 
 <script>
     const add_new = () => {
