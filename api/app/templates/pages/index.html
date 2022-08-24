@@ -2,17 +2,8 @@
 
 <h1 style="text-align: center">crab</h1>
 <hr />
-<button type="button" class="btn btn-warning" onclick="add_new()">
+<button type="button" class="btn btn-success" onclick="add_new()">
     create
-</button>
-<button type="button" class="btn btn-success" onclick="crud_read()">
-    read
-</button>
-<button type="button" class="btn btn-primary" onclick="crud_update()">
-    update
-</button>
-<button type="button" class="btn btn-danger" onclick="crud_destroy()">
-    destroy
 </button>
 <hr />
 <textarea
@@ -27,6 +18,12 @@
 <script>
     const add_new = () => {
         const data = $("#console").val();
+
+        if (data.length == 0) {
+            show_error("Please enter data.");
+            return;
+        }
+
         Client.add_new(
             data,
             (response) => {
