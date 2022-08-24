@@ -4,7 +4,12 @@
     onkeydown="handle_keypress(event)"
     onchange="editor.load(get_json())"
     rows="5"
-    style="width: 100%"
+    style="
+        font-family: monospace;
+        color: white;
+        background-color: black;
+        width: 100%;
+    "
 ></textarea>
 <pre id="output"></pre>
 <button class="btn btn-warning" onclick="editor.load(get_json())">
@@ -18,14 +23,13 @@
         var pretext = v.substring(0, cursorPos);
         var posttext = v.substring(cursorPos, v.length);
         $("#input").val(pretext + text + posttext);
-        var x = pretext.length + text.length;
-        $("#input").prop("selectionEnd", x);
+        $("#input").prop("selectionEnd", pretext.length + text.length);
     };
 
     const handle_keypress = (event) => {
         if (event.key == "Tab") {
             event.preventDefault();
-            insert_text_at_cursor("\t");
+            insert_text_at_cursor("    ");
         } else {
             console.log("Unhandled keypress: " + event.key);
         }
@@ -37,7 +41,9 @@
     const get_json = () => {
         try {
             var json = JSON.parse($("#input").val());
+            $("#create_button").prop("disabled", false);
         } catch (exception) {
+            $("#create_button").prop("disabled", true);
             return last_valid_json;
         }
         last_valid_json = json;
