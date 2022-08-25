@@ -12,27 +12,12 @@
         width: 100%;
     "
 ></textarea>
-<pre
-    id="reflection_container"
-><code id="reflection" class="language-json"></code></pre>
 <pre id="output"></pre>
 <button class="btn btn-warning" onclick="editor.load(get_json())">
     Update
 </button>
 
 <script>
-    var code = $("#reflection");
-    const highlight_code = () => {
-        var newCode = document.createElement("code");
-        newCode.textContent = code.textContent;
-        newCode.className = code.className;
-
-        Prism.highlightElement(newCode);
-
-        $("#reflection_container").append(newCode);
-        code = newCode;
-    };
-
     const insert_text_at_cursor = (text) => {
         var cursorPos = $("#input").prop("selectionStart");
         var v = $("#input").val();
@@ -52,7 +37,6 @@
 
         editor.load(get_json());
         $("#reflection").text($("#input").val());
-        highlight_code();
     };
 
     var last_valid_json = "{}";
