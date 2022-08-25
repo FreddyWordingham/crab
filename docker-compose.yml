@@ -13,13 +13,13 @@ services:
       - mongodb_data_container:/data/db
     ports:
       - "27017:27017"
-  api:
-    container_name: api_container
-    env_file:
-      - ./.env
-    build: ./api
-    ports:
-      - 8000:8000
+  # api:
+  #   container_name: api_container
+  #   env_file:
+  #     - ./.env
+  #   build: ./api
+  #   ports:
+  #     - 8000:8000
 
 volumes:
   mongodb_data_container:
